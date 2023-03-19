@@ -22,7 +22,6 @@ import com.test_task.pages.LoginPage;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
 @Epic("Test Case #001: Check Successful Purchase")
