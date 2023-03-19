@@ -11,6 +11,8 @@ import org.openqa.selenium.support.FindBy;
 
 import com.test_task.locators.InventoryPageLocators;
 
+import io.qameta.allure.Step;
+
 public class InventoryPage extends Page {
 
   @CacheLookup
@@ -33,12 +35,14 @@ public class InventoryPage extends Page {
   }
 
   // if async
+  @Step("Get products.")
   public void getProducts() {
 
     products = driver.findElements(By.cssSelector(InventoryPageLocators.inventoryItem));
 
   }
 
+  @Step("Put the first product to cart.")
   public void putFirstProductToCart() {
     final WebElement firstProduct = products.get(0);
     final WebElement addToCartButton = firstProduct.findElement(By.cssSelector(InventoryPageLocators.addToCartButton));
@@ -55,6 +59,7 @@ public class InventoryPage extends Page {
     }
   }
 
+  @Step("Open cart.")
   public void openCart() {
     cartButton.click();
   }

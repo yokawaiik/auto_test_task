@@ -9,6 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import com.test_task.constants.UrlConstants;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -31,7 +34,7 @@ public class JUnitTestBase {
   @BeforeAll
   public static void loadConfig() throws Throwable {
     SuiteConfiguration config = new SuiteConfiguration();
-    baseUrl = config.getProperty("site.url");
+    baseUrl = UrlConstants.base;
     if (config.hasProperty("grid.url") && !"".equals(config.getProperty("grid.url"))) {
       gridHubUrl = new URL(config.getProperty("grid.url"));
     }
@@ -41,9 +44,11 @@ public class JUnitTestBase {
 
   @BeforeEach
   public void initDriver() throws Throwable {
+
     WebDriverManager.chromedriver().setup();
-    // Create the driver object
-    driver = new ChromeDriver();
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--remote-allow-origins=*");
+    driver = new ChromeDriver(options);
 
   }
 

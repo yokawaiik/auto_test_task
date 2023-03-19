@@ -1,14 +1,18 @@
 # Auto test task
 
-Java
-Selenium
-Maven
-Page Object Model
+Stack:
+- Java
+- Selenium
+- Maven
+- Page Object Model
+- Allure
 
 
-
-## Run single test
+### Run single test
     mvn -Dtest=SingleTestClass test
 
-## Run all tests
+### Run all tests
     mvn test
+
+### Run allure server
+    allure serve

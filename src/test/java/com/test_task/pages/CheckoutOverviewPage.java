@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 import com.test_task.locators.CheckoutOverviewPageLocators;
 
+import io.qameta.allure.Step;
+
 public class CheckoutOverviewPage extends Page {
 
   @CacheLookup
@@ -17,6 +19,7 @@ public class CheckoutOverviewPage extends Page {
     super(webDriver);
   }
 
+  @Step("Finish order.")
   public void finishOrder() {
     finishButton.click();
   }

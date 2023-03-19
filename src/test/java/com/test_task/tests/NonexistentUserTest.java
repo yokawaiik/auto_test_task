@@ -12,6 +12,11 @@ import com.test_task.configuration.JUnitTestBase;
 import com.test_task.constants.NonexistentLoginCredentialConstants;
 import com.test_task.pages.LoginPage;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
+
+@Epic("Nonexistent user test")
 public class NonexistentUserTest extends JUnitTestBase {
 
   private LoginPage loginPage;
@@ -22,10 +27,12 @@ public class NonexistentUserTest extends JUnitTestBase {
 
   }
 
-  @DisplayName("Test Case #002: Check nonexistent user")
-  @Tag("TC#002")
   @Test
-  public void succesfful() {
+  @Tag("TC#002")
+  @DisplayName("Test Case #002: Check nonexistent user")
+  @Story("User tries to login the system with nonexistent username and password for system.")
+  @Description("Test Case #002: Check nonexistent user")
+  public void unsuccessfulLogin() {
     driver.get(baseUrl);
 
     loginPage.login(NonexistentLoginCredentialConstants.userName, NonexistentLoginCredentialConstants.password);

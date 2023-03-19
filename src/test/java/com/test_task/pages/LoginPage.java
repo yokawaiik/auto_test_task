@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 import com.test_task.locators.LoginPageLocators;
 
+import io.qameta.allure.Step;
+
 public class LoginPage extends Page {
 
   @FindBy(id = LoginPageLocators.userNameInput)
@@ -26,6 +28,7 @@ public class LoginPage extends Page {
 
   }
 
+  @Step("Sign in the site.")
   public void login(String userName, String password) {
     userNameInput.sendKeys(userName);
     passwordInput.sendKeys(password);

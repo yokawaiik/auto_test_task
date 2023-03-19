@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import com.test_task.constants.CheckoutCredentialConstants;
 import com.test_task.locators.CheckoutInfoPageLocators;
 
+import io.qameta.allure.Step;
+
 public class CheckoutInfoPage extends Page {
 
   @CacheLookup
@@ -30,12 +32,14 @@ public class CheckoutInfoPage extends Page {
     super(webDriver);
   }
 
+  @Step("Fill in the form.")
   private void fillTheForm() {
     firstName.sendKeys(CheckoutCredentialConstants.firstName);
     lastName.sendKeys(CheckoutCredentialConstants.lastName);
     zipCode.sendKeys(CheckoutCredentialConstants.zipCode);
   }
 
+  @Step("Press 'continue checkout'.")
   public void continueCheckout() {
     fillTheForm();
     continueButton.click();

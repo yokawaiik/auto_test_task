@@ -7,10 +7,11 @@ import org.openqa.selenium.support.FindBy;
 
 import com.test_task.locators.CartPageLocators;
 
+import io.qameta.allure.Step;
+
 public class CartPage extends Page {
 
   @CacheLookup
-  // @FindBy(id = "checkout")
   @FindBy(id = CartPageLocators.checkOutButton)
   public WebElement checkOutButton;
 
@@ -18,6 +19,7 @@ public class CartPage extends Page {
     super(webDriver);
   }
 
+  @Step("Press 'checkout'.")
   public void checkOut() {
     checkOutButton.click();
   }
