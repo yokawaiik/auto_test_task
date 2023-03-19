@@ -19,6 +19,13 @@ import com.test_task.pages.CheckoutOverviewPage;
 import com.test_task.pages.InventoryPage;
 import com.test_task.pages.LoginPage;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
+
+@Epic("Test Case #001: Check Successful Purchase")
 public class SuccessfulPurchaseTest extends JUnitTestBase {
 
   private LoginPage loginPage;
@@ -38,10 +45,14 @@ public class SuccessfulPurchaseTest extends JUnitTestBase {
     checkoutCompletePage = PageFactory.initElements(driver, CheckoutCompletePage.class);
   }
 
-  @DisplayName("Test Case #001: Check Successful Purchase")
-  @Tag("TC#002")
+
   @Test
+  @Tag("TC#001")
+  @DisplayName("Test Case #001: Check Successful Purchase")
+  @Story("User signs in, put product to cart, does order and finishes it.")
+  @Description("Test Case #001: Check Successful Purchase")
   public void succesfful() {
+    Allure.step("Open the site.");
     driver.get(baseUrl);
 
     loginPage.login(LoginCredentialConstants.userName, LoginCredentialConstants.password);
