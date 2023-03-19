@@ -1,7 +1,5 @@
 package com.test_task.pages;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -15,12 +13,6 @@ public class CheckoutCompletePage extends Page {
 
   public CheckoutCompletePage(WebDriver webDriver) {
     super(webDriver);
-  }
-
-  public void checkOrderComplete() {
-    assertAll("Order wasn't complete.",
-        () -> driver.getCurrentUrl().contains("https://www.saucedemo.com/checkout-complete.html"),
-        () -> message.getText().toLowerCase().contains("Thank you for your order".toLowerCase()));
   }
 
 }

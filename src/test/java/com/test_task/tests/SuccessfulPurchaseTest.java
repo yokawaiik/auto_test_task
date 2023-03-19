@@ -1,11 +1,16 @@
-package com.test_task;
+package com.test_task.tests;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+
+import org.apache.hc.core5.util.Asserts;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
 import org.openqa.selenium.support.PageFactory;
 
+import com.test_task.configuration.JUnitTestBase;
+import com.test_task.constants.LoginCredentialConstants;
 import com.test_task.pages.CartPage;
 import com.test_task.pages.CheckoutCompletePage;
 import com.test_task.pages.CheckoutInfoPage;
@@ -33,27 +38,38 @@ public class SuccessfulPurchaseTest extends JUnitTestBase {
   }
 
   @DisplayName("Test Case #001: Check Successful Purchase")
+  @Tag("TC#002")
   @Test
   public void succesfful() {
     driver.get(baseUrl);
 
-    loginPage.login();
-    loginPage.checkUserLoggedIn();
+    loginPage.login(LoginCredentialConstants.userName, LoginCredentialConstants.password);
+
+    Asserts.check(
+        loginPage.hasErrorMessageElement() == false,
+        "The user was not supposed to be logged in.");
 
     inventoryPage.getProducts();
     inventoryPage.putFirstProductToCart();
-    inventoryPage.checkIfCartNotEmpty();
+
+    Asserts.check(inventoryPage.isCartEmpty() == false, "Cart is empty.");
+
+    Asserts.check(inventoryPage.productsInCart.size() == Integer.parseInt(inventoryPage.shoppingCartBadge.getText()),
+        "Cart doesn't contain the all added products.");
+
     inventoryPage.openCart();
-    inventoryPage.checkIfCartWasOpenned();
+
+    Asserts.check(cartPage.isCartOpenned(), "Cart wasn't oppened.");
 
     cartPage.checkOut();
 
     checkoutInfoPage.continueCheckout();
-    checkoutInfoPage.checkCheckoutInfoWasDone();
+    Asserts.check(checkoutInfoPage.isInfoDone(), "Checkout info wasn't done.");
 
     checkoutOverviewPage.finishOrder();
-
-    checkoutCompletePage.checkOrderComplete();
+    assertAll("Order wasn't complete.",
+        () -> driver.getCurrentUrl().contains("https://www.saucedemo.com/checkout-complete.html"),
+        () -> checkoutCompletePage.message.getText().toLowerCase().contains("Thank you for your order".toLowerCase()));
 
   }
 }

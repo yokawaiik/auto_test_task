@@ -1,6 +1,5 @@
 package com.test_task.pages;
 
-import org.apache.hc.core5.util.Asserts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -41,8 +40,8 @@ public class CheckoutInfoPage extends Page {
     continueButton.click();
   }
 
-  public void checkCheckoutInfoWasDone() {
-    Asserts.check(pageUrl != driver.getCurrentUrl(), "Checkout info wasn't done.");
+  public boolean isInfoDone() {
+    return pageUrl != driver.getCurrentUrl();
   }
 
 }

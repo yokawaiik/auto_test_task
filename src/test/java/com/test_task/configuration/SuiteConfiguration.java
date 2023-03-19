@@ -1,4 +1,4 @@
-package com.test_task;
+package com.test_task.configuration;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;

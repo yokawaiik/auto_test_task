@@ -1,6 +1,7 @@
-package com.test_task;
+package com.test_task.configuration;
 
 import java.net.URL;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 
 // import ru.stqa.selenium.factory.WebDriverPool;
@@ -50,6 +52,15 @@ public class JUnitTestBase {
     if (driver != null) {
       driver.quit();
 
+    }
+  }
+
+  public boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
     }
   }
 }

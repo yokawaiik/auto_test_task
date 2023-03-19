@@ -3,7 +3,6 @@ package com.test_task.pages;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.hc.core5.util.Asserts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +14,11 @@ public class InventoryPage extends Page {
   @CacheLookup
   @FindBy(id = "shopping_cart_container")
   public WebElement cartButton;
+
+
+  
+  @FindBy(className = "shopping_cart_badge")
+  public WebElement shoppingCartBadge;
 
   public List<WebElement> products;
 
@@ -54,25 +58,8 @@ public class InventoryPage extends Page {
     }
   }
 
-  public void checkIfCartNotEmpty() {
-
-    Asserts.check(isCartEmpty() == false, "Cart is empty.");
-
-    final WebElement productsInCartCount = driver.findElement(By.className("shopping_cart_badge"));
-
-    Integer.parseInt(productsInCartCount.getText());
-
-    Asserts.check(productsInCart.size() == Integer.parseInt(productsInCartCount.getText()),
-        "Cart doesn't contain the all added products.");
-
-  }
-
   public void openCart() {
     cartButton.click();
-  }
-
-  public void checkIfCartWasOpenned() {
-    Asserts.check(pageUrl != driver.getCurrentUrl(), "Cart wasn't oppened.");
   }
 
 }

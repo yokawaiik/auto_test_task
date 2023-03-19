@@ -1,6 +1,5 @@
 package com.test_task.pages;
 
-import org.apache.hc.core5.util.Asserts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -16,8 +15,8 @@ public class CartPage extends Page {
     super(webDriver);
   }
 
-  public void checkIfCartWasOpenned() {
-    Asserts.check(pageUrl != driver.getCurrentUrl(), "Checkout wasn't done.");
+  public boolean isCartOpenned() {
+    return "https://www.saucedemo.com/cart.html" != driver.getCurrentUrl();
   }
 
   public void checkOut() {
