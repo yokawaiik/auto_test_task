@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.test_task.configuration.JUnitTestBase;
 import com.test_task.constants.LoginCredentialConstants;
+import com.test_task.constants.UrlConstants;
 import com.test_task.pages.CartPage;
 import com.test_task.pages.CheckoutCompletePage;
 import com.test_task.pages.CheckoutInfoPage;
@@ -59,7 +60,7 @@ public class SuccessfulPurchaseTest extends JUnitTestBase {
 
     inventoryPage.openCart();
 
-    Asserts.check(cartPage.isCartOpenned(), "Cart wasn't oppened.");
+    Asserts.check(driver.getCurrentUrl().equals(UrlConstants.cart), "Cart wasn't oppened.");
 
     cartPage.checkOut();
 
@@ -68,7 +69,7 @@ public class SuccessfulPurchaseTest extends JUnitTestBase {
 
     checkoutOverviewPage.finishOrder();
     assertAll("Order wasn't complete.",
-        () -> driver.getCurrentUrl().contains("https://www.saucedemo.com/checkout-complete.html"),
+        () -> driver.getCurrentUrl().contains(UrlConstants.checkoutComplete),
         () -> checkoutCompletePage.message.getText().toLowerCase().contains("Thank you for your order".toLowerCase()));
 
   }

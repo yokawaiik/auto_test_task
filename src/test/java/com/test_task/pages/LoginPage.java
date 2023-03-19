@@ -5,18 +5,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.test_task.locators.LoginPageLocators;
+
 public class LoginPage extends Page {
 
-  @FindBy(id = "user-name")
+  @FindBy(id = LoginPageLocators.userNameInput)
   public WebElement userNameInput;
 
-  @FindBy(id = "password")
+  @FindBy(id = LoginPageLocators.passwordInput)
   public WebElement passwordInput;
 
-  @FindBy(xpath = "//input[@data-test='login-button']")
+  @FindBy(xpath = LoginPageLocators.loginButton)
   public WebElement loginButton;
 
-  @FindBy(xpath = "//*[@class='error-message-container error']/h3[@data-test='error']")
+  @FindBy(xpath = LoginPageLocators.errorMessageElement)
   public WebElement errorMessageElement;
 
   public LoginPage(WebDriver webDriver) {
@@ -32,6 +34,6 @@ public class LoginPage extends Page {
   }
 
   public boolean hasErrorMessageElement() {
-    return isElementPresent(By.xpath("//*[@class='error-message-container error']/h3[@data-test='error']"));
+    return isElementPresent(By.xpath(LoginPageLocators.errorMessageElement));
   }
 }

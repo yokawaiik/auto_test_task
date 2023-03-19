@@ -9,15 +9,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import com.test_task.locators.InventoryPageLocators;
+
 public class InventoryPage extends Page {
 
   @CacheLookup
-  @FindBy(id = "shopping_cart_container")
+  @FindBy(id = InventoryPageLocators.cartButton)
   public WebElement cartButton;
 
 
   
-  @FindBy(className = "shopping_cart_badge")
+  @FindBy(className = InventoryPageLocators.shoppingCartBadge)
   public WebElement shoppingCartBadge;
 
   public List<WebElement> products;
@@ -33,25 +35,20 @@ public class InventoryPage extends Page {
   // if async
   public void getProducts() {
 
-    products = driver.findElements(By.cssSelector("div[class='inventory_item']"));
+    products = driver.findElements(By.cssSelector(InventoryPageLocators.inventoryItem));
 
   }
 
   public void putFirstProductToCart() {
-
     final WebElement firstProduct = products.get(0);
-
-    final WebElement addToCartButton = firstProduct.findElement(By.cssSelector("button"));
-
+    final WebElement addToCartButton = firstProduct.findElement(By.cssSelector(InventoryPageLocators.addToCartButton));
     addToCartButton.click();
-
     productsInCart.add(firstProduct);
-
   }
 
   public boolean isCartEmpty() {
 
-    if (!isElementPresent(By.className("shopping_cart_badge"))) {
+    if (!isElementPresent(By.className(InventoryPageLocators.shoppingCartBadge))) {
       return true;
     } else {
       return false;

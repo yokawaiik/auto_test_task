@@ -6,23 +6,24 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 import com.test_task.constants.CheckoutCredentialConstants;
+import com.test_task.locators.CheckoutInfoPageLocators;
 
 public class CheckoutInfoPage extends Page {
 
   @CacheLookup
-  @FindBy(id = "first-name")
+  @FindBy(id = CheckoutInfoPageLocators.firstNameElement)
   public WebElement firstName;
 
   @CacheLookup
-  @FindBy(id = "last-name")
+  @FindBy(id = CheckoutInfoPageLocators.lastName)
   public WebElement lastName;
 
   @CacheLookup
-  @FindBy(id = "postal-code")
+  @FindBy(id = CheckoutInfoPageLocators.zipCode)
   public WebElement zipCode;
 
   @CacheLookup
-  @FindBy(id = "continue")
+  @FindBy(id = CheckoutInfoPageLocators.continueButton)
   public WebElement continueButton;
 
   public CheckoutInfoPage(WebDriver webDriver) {
